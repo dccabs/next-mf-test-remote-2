@@ -68,116 +68,96 @@ const days = [
   },
 ];
 
+const people = [
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
+
+  // More people...
+]
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function RecentActivityTable() {
   return (
-    <div>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">
-          Recent activity (remote 2)
-        </h2>
-      </div>
-      <div className="mt-6 overflow-hidden border-t border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-            <table className="w-full text-left">
-              <thead className="sr-only">
-                <tr>
-                  <th>Amount</th>
-                  <th className="hidden sm:table-cell">Client</th>
-                  <th>More details</th>
-                </tr>
-              </thead>
-              <tbody>
-                {days.map((day) => (
-                  <Fragment key={day.dateTime}>
-                    <tr className="text-sm leading-6 text-gray-900">
-                      <th
-                        scope="colgroup"
-                        colSpan={3}
-                        className="relative isolate py-2 font-semibold"
-                      >
-                        <time dateTime={day.dateTime}>{day.date}</time>
-                        <div className="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50" />
-                        <div className="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50" />
-                      </th>
-                    </tr>
-                    {day.transactions.map((transaction) => (
-                      <tr key={transaction.id}>
-                        <td className="relative py-5 pr-6">
-                          <div className="flex gap-x-6">
-                            <transaction.icon
-                              className="hidden h-6 w-5 flex-none text-gray-400 sm:block"
-                              aria-hidden="true"
-                            />
-                            <div className="flex-auto">
-                              <div className="flex items-start gap-x-3">
-                                <div className="text-sm font-medium leading-6 text-gray-900">
-                                  {transaction.amount}
-                                </div>
-                                <div
-                                  className={classNames(
-                                    statuses[transaction.status],
-                                    "rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset"
-                                  )}
-                                >
-                                  {transaction.status}
-                                </div>
-                              </div>
-                              {transaction.tax ? (
-                                <div className="mt-1 text-xs leading-5 text-gray-500">
-                                  {transaction.tax} tax
-                                </div>
-                              ) : null}
-                            </div>
-                          </div>
-                          <div className="absolute bottom-0 right-full h-px w-screen bg-gray-100" />
-                          <div className="absolute bottom-0 left-0 h-px w-screen bg-gray-100" />
-                        </td>
-                        <td className="hidden py-5 pr-6 sm:table-cell">
-                          <div className="text-sm leading-6 text-gray-900">
-                            {transaction.client}
-                          </div>
-                          <div className="mt-1 text-xs leading-5 text-gray-500">
-                            {transaction.description}
-                          </div>
-                        </td>
-                        <td className="py-5 text-right">
-                          <div className="flex justify-end">
-                            <a
-                              href={transaction.href}
-                              className="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500"
-                            >
-                              View
-                              <span className="hidden sm:inline">
-                                {" "}
-                                transaction
-                              </span>
-                              <span className="sr-only">
-                                , invoice #{transaction.invoiceNumber},{" "}
-                                {transaction.client}
-                              </span>
-                            </a>
-                          </div>
-                          <div className="mt-1 text-xs leading-5 text-gray-500">
-                            Invoice{" "}
-                            <span className="text-gray-900">
-                              #{transaction.invoiceNumber}
-                            </span>
-                          </div>
-                        </td>
+      <div className="bg-gray-900">
+        <div className="mx-auto max-w-7xl">
+          <div className="bg-gray-900 py-10">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <div className="sm:flex sm:items-center">
+                <div className="sm:flex-auto">
+                  <h1 className="text-base font-semibold leading-6 text-white">Table Remote 2</h1>
+                  <p className="mt-2 text-sm text-gray-300">
+                    A list of all the users in your account including their name, title, email and role.
+                  </p>
+                </div>
+                <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                  <button
+                      type="button"
+                      className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  >
+                    Add user
+                  </button>
+                </div>
+              </div>
+              <div className="mt-8 flow-root">
+                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <table className="min-w-full divide-y divide-gray-700">
+                      <thead>
+                      <tr>
+                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0">
+                          Name
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                          Title
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                          Email
+                        </th>
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                          Role
+                        </th>
+                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                          <span className="sr-only">Edit</span>
+                        </th>
                       </tr>
-                    ))}
-                  </Fragment>
-                ))}
-              </tbody>
-            </table>
+                      </thead>
+                      <tbody className="divide-y divide-gray-800">
+                      {people.map((person) => (
+                          <tr key={person.email}>
+                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
+                              {person.name}
+                            </td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.title}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.email}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.role}</td>
+                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                              <a href="#" className="text-indigo-400 hover:text-indigo-300">
+                                Edit<span className="sr-only">, {person.name}</span>
+                              </a>
+                            </td>
+                          </tr>
+                      ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
