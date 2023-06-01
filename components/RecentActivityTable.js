@@ -67,21 +67,13 @@ export default function Example() {
             {tiers.map((tier, tierIdx) => (
                 <div
                     key={tier.id}
-                    className={classNames(
-                        tier.mostPopular ? 'lg:z-10 lg:rounded-b-none' : 'lg:mt-8',
-                        tierIdx === 0 ? 'lg:rounded-r-none' : '',
-                        tierIdx === tiers.length - 1 ? 'lg:rounded-l-none' : '',
-                        'flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10'
-                    )}
+                    tw='flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10'
                 >
                   <div>
                     <div tw="flex items-center justify-between gap-x-4">
                       <h3
                           id={tier.id}
-                          className={classNames(
-                              tier.mostPopular ? 'text-indigo-600' : 'text-gray-900',
-                              'text-lg font-semibold leading-8'
-                          )}
+                          tw='text-indigo-600 text-lg font-semibold leading-8'
                       >
                         {tier.name}
                       </h3>
@@ -108,12 +100,7 @@ export default function Example() {
                   <a
                       href={tier.href}
                       aria-describedby={tier.id}
-                      className={classNames(
-                          tier.mostPopular
-                              ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500'
-                              : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
-                          'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                      )}
+                      tw="text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Buy plan
                   </a>
