@@ -1,38 +1,57 @@
-import { PlusSmallIcon } from "@heroicons/react/20/solid";
+import 'twin.macro'
+/** @jsxImportSource @emotion/react */
 
-const secondaryNavigation = [
-  { name: "Last 7 days", href: "#", current: true },
-  { name: "Last 30 days", href: "#", current: false },
-  { name: "All-time", href: "#", current: false },
-];
-
-export default function SecondNav() {
+export default function Example() {
   return (
-    <header className="pb-4 pt-6 sm:pb-6">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
-        <h1 className="text-base font-semibold leading-7 text-gray-900">
-          Cashflow (remote 2)
-        </h1>
-        <div className="order-last flex w-full gap-x-8 text-sm font-semibold leading-6 sm:order-none sm:w-auto sm:border-l sm:border-gray-200 sm:pl-6 sm:leading-7">
-          {secondaryNavigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className={item.current ? "text-indigo-600" : "text-gray-700"}
-            >
-              {item.name}
-            </a>
-          ))}
+      <div tw="bg-white py-24 sm:py-32">
+        <div tw="mx-auto max-w-7xl px-6 lg:px-8">
+          <div tw="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+            <img
+                tw="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
+                alt="Transistor"
+                width={158}
+                height={48}
+            />
+            <img
+                tw="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
+                alt="Reform"
+                width={158}
+                height={48}
+            />
+            <img
+                tw="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
+                alt="Tuple"
+                width={158}
+                height={48}
+            />
+            <img
+                tw="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+                src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
+                alt="SavvyCal"
+                width={158}
+                height={48}
+            />
+            <img
+                tw="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+                src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
+                alt="Statamic"
+                width={158}
+                height={48}
+            />
+          </div>
+          <div tw="mt-16 flex justify-center">
+            <p tw="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/5">
+              <span tw="hidden md:inline">Over 2500 companies use our tools to better their business.</span>
+              <a href="#" tw="font-semibold text-indigo-600">
+                <span tw="absolute inset-0" aria-hidden="true" /> Read our customer stories{' '}
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </p>
+          </div>
         </div>
-
-        <a
-          href="#"
-          className="ml-auto flex items-center gap-x-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          <PlusSmallIcon className="-ml-1.5 h-5 w-5" aria-hidden="true" />
-          New invoice
-        </a>
       </div>
-    </header>
-  );
+  )
 }

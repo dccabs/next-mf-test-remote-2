@@ -1,91 +1,157 @@
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import {
-    ArrowDownCircleIcon,
-    ArrowPathIcon,
-    ArrowUpCircleIcon,
-    Bars3Icon,
-} from '@heroicons/react/20/solid'
-import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: 'Home', href: '#' },
-    { name: 'Invoices', href: '#' },
-    { name: 'Clients', href: '#' },
-    { name: 'Expenses', href: '#' },
+    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Team', href: '#', current: false },
+    { name: 'Projects', href: '#', current: false },
+    { name: 'Calendar', href: '#', current: false },
 ]
 
-export default function Example() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+import 'twin.macro'
+/** @jsxImportSource @emotion/react */
 
+export default function Example() {
     return (
-            <header className="absolute inset-x-0 top-0 z-50 flex h-16 border-b border-gray-900/10">
-                <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-1 items-center gap-x-6">
-                        <button type="button" className="-m-3 p-3 md:hidden" onClick={() => setMobileMenuOpen(true)}>
-                            <span className="sr-only">Open main menu</span>
-                            <Bars3Icon className="h-5 w-5 text-gray-900" aria-hidden="true" />
-                        </button>
-                        <img
-                            className="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
-                        /> (Remote 2 Header)
-                    </div>
-                    <nav className="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
-                        {navigation.map((item, itemIdx) => (
-                            <a key={itemIdx} href={item.href}>
-                                {item.name}
-                            </a>
-                        ))}
-                    </nav>
-                    <div className="flex flex-1 items-center justify-end gap-x-8">
-                        <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
-                            <span className="sr-only">View notifications</span>
-                            <BellIcon className="h-6 w-6" aria-hidden="true" />
-                        </button>
-                        <a href="#" className="-m-1.5 p-1.5">
-                            <span className="sr-only">Your profile</span>
-                            <img
-                                className="h-8 w-8 rounded-full bg-gray-800"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                            />
-                        </a>
-                    </div>
-                </div>
-                <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                    <div className="fixed inset-0 z-50" />
-                    <Dialog.Panel className="fixed inset-y-0 left-0 z-50 w-full overflow-y-auto bg-white px-4 pb-6 sm:max-w-sm sm:px-6 sm:ring-1 sm:ring-gray-900/10">
-                        <div className="-ml-0.5 flex h-16 items-center gap-x-6">
-                            <button type="button" className="-m-2.5 p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
-                                <span className="sr-only">Close menu</span>
-                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                            </button>
-                            <div className="-ml-0.5">
-                                <a href="#" className="-m-1.5 block p-1.5">
-                                    <span className="sr-only">Your Company</span>
+        <Disclosure as="nav" tw="bg-gray-800">
+            {({ open }) => (
+                <>
+                    <div tw="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                        <div tw="relative flex h-16 items-center justify-between">
+                            <div tw="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                                {/* Mobile menu button*/}
+                                <Disclosure.Button tw="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <span tw="sr-only">Open main menu</span>
+                                    {open ? (
+                                        <XMarkIcon tw="block h-6 w-6" aria-hidden="true" />
+                                    ) : (
+                                        <Bars3Icon tw="block h-6 w-6" aria-hidden="true" />
+                                    )}
+                                </Disclosure.Button>
+                            </div>
+                            <div tw="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                                <div tw="flex flex-shrink-0 items-center">
                                     <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                        alt=""
+                                        tw="block h-8 w-auto lg:hidden"
+                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                        alt="Your Company"
                                     />
-                                </a>
+                                    <img
+                                        tw="hidden h-8 w-auto lg:block"
+                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                        alt="Your Company"
+                                    />
+                                </div>
+                                <div tw="hidden sm:ml-6 sm:block">
+                                    <div tw="flex space-x-4">
+                                        {navigation.map((item) => (
+                                            <a
+                                                key={item.name}
+                                                href={item.href}
+                                                className={classNames(
+                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'rounded-md px-3 py-2 text-sm font-medium'
+                                                )}
+                                                aria-current={item.current ? 'page' : undefined}
+                                            >
+                                                {item.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div tw="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                <button
+                                    type="button"
+                                    tw="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                >
+                                    <span tw="sr-only">View notifications</span>
+                                    <BellIcon tw="h-6 w-6" aria-hidden="true" />
+                                </button>
+
+                                {/* Profile dropdown */}
+                                <Menu as="div" tw="relative ml-3">
+                                    <div>
+                                        <Menu.Button tw="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                            <span tw="sr-only">Open user menu</span>
+                                            <img
+                                                tw="h-8 w-8 rounded-full"
+                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                alt=""
+                                            />
+                                        </Menu.Button>
+                                    </div>
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-100"
+                                        enterFrom="transform opacity-0 scale-95"
+                                        enterTo="transform opacity-100 scale-100"
+                                        leave="transition ease-in duration-75"
+                                        leaveFrom="transform opacity-100 scale-100"
+                                        leaveTo="transform opacity-0 scale-95"
+                                    >
+                                        <Menu.Items tw="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                    >
+                                                        Your Profile
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                    >
+                                                        Settings
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                            <Menu.Item>
+                                                {({ active }) => (
+                                                    <a
+                                                        href="#"
+                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                    >
+                                                        Sign out
+                                                    </a>
+                                                )}
+                                            </Menu.Item>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>
                             </div>
                         </div>
-                        <div className="mt-2 space-y-2">
+                    </div>
+
+                    <Disclosure.Panel tw="sm:hidden">
+                        <div tw="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <a
+                                <Disclosure.Button
                                     key={item.name}
+                                    as="a"
                                     href={item.href}
-                                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                                    className={classNames(
+                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        'block rounded-md px-3 py-2 text-base font-medium'
+                                    )}
+                                    aria-current={item.current ? 'page' : undefined}
                                 >
                                     {item.name}
-                                </a>
+                                </Disclosure.Button>
                             ))}
                         </div>
-                    </Dialog.Panel>
-                </Dialog>
-            </header>
+                    </Disclosure.Panel>
+                </>
+            )}
+        </Disclosure>
     )
 }

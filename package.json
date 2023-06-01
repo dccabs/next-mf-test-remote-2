@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@module-federation/nextjs-mf": "^6.5.1",
@@ -16,6 +18,8 @@
     "next": "13.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^5.3.11",
+    "twin.macro": "^3.3.1",
     "webpack": "5.80.0"
   },
   "devDependencies": {
