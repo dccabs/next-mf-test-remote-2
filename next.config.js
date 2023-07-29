@@ -1,7 +1,24 @@
 /** @type {import('next').NextConfig} */
 const NextFederationPlugin = require('@module-federation/nextjs-mf');
 const packageJson = require('./package.json');
+const sharedCongfigDev = {}
+const sharedCongfigProd = {
+    // ...packageJson.dependencies,
+    // react: {
+    //     singleton: true,
+    //     requiredVersion: packageJson.dependencies.react
+    // },
+    // "react-dom": {
+    //     singleton: true,
+    //     requiredVersion: packageJson.dependencies["react-dom"]
+    // },
+    // "react/jsx-dev-runtime": {
+    //     singleton: true,
+    //     requiredVersion: packageJson.dependencies["react"]
+    // },
+}
 
+const sharedConfig = process.env.NODE_ENV === 'production' ? sharedCongfigProd : sharedCongfigDev;
 
 const nextConfig = {
   reactStrictMode: true,
@@ -19,23 +36,7 @@ const nextConfig = {
                     './secondNav': './components/SecondNav.js',
                     './header': './components/Header.js',
                 },
-                shared: {
-                    react: {
-                        eager: true,
-                        singleton: true,
-                        requiredVersion: packageJson.dependencies.react
-                    },
-                    "react-dom": {
-                        eager: true,
-                        singleton: true,
-                        requiredVersion: packageJson.dependencies["react-dom"]
-                    },
-                    "react/jsx-dev-runtime": {
-                        eager: true,
-                        singleton: true,
-                        requiredVersion: packageJson.dependencies["react"]
-                    },
-                },
+                shared: sharedCongfigProd,
             })
         );
         config.resolve.fallback = { fs: false, module: false }
